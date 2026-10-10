@@ -1,0 +1,824 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MorphTR | Türkçe LLM & RAG Sistemleri İçin Black-Box Test Kütüphanesi</title>
+  <meta name="description" content="Türkçe'nin sondan eklemeli yapısına özel Metamorphic Testing, Jailbreak koruması ve LLM-as-a-Judge teknikleriyle LLM ve RAG sistemlerinin test oracle problemini çözen black-box test çatısı.">
+  <meta name="keywords" content="MorphTR, Türkçe LLM, Metamorphic Testing, RAG Testi, LLM as a Judge, Jailbreak Koruması, Test Oracle, NLP, Yapay Zeka Test">
+  <meta name="author" content="MorphTR Project">
+
+  <!-- Open Graph / Social Media -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://morphtr.dev/">
+  <meta property="og:title" content="MorphTR | Türkçe LLM & RAG Test Çatısı">
+  <meta property="og:description" content="Türkçe LLM ve RAG sistemlerinde Test Oracle problemini çözen yenilikçi Metamorphic Testing ve güvenlik kütüphanesi.">
+  <meta property="og:image" content="https://morphtr.dev/og-image.png">
+
+  <!-- Fonts & Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Background decorative glows -->
+  <div class="glow-orb glow-top-left" aria-hidden="true"></div>
+  <div class="glow-orb glow-top-right" aria-hidden="true"></div>
+  <div class="glow-orb glow-center" aria-hidden="true"></div>
+  <div class="bg-grid-pattern" aria-hidden="true"></div>
+
+  <!-- Navigation -->
+  <header class="navbar" id="navbar">
+    <div class="container nav-container">
+      <a href="#" class="brand-logo" id="nav-brand" aria-label="MorphTR Ana Sayfa">
+        <div class="logo-icon">
+          <span class="logo-morph">M</span>
+          <span class="logo-dot"></span>
+        </div>
+        <span class="brand-name">Morph<span class="brand-accent">TR</span></span>
+        <span class="version-tag">v0.1.0-alpha</span>
+      </a>
+
+      <nav class="nav-links" id="nav-links">
+        <a href="#sorun-ve-cozum" class="nav-link">Neden MorphTR?</a>
+        <a href="#ozellikler" class="nav-link">Özellikler</a>
+        <a href="#interaktif-demo" class="nav-link">Canlı Simülatör</a>
+        <a href="#ornek-kod" class="nav-link">Kod Örnekleri</a>
+        <a href="#karsilastirma" class="nav-link">Karşılaştırma</a>
+        <a href="#mimari" class="nav-link">Mimari</a>
+      </nav>
+
+      <div class="nav-actions">
+        <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="btn-nav-github" id="github-link">
+          <svg class="icon" viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+            <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
+          </svg>
+          <span>GitHub</span>
+        </a>
+        <a href="#hizli-baslangic" class="btn-primary-sm">Başlayın</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main>
+    <!-- HERO SECTION -->
+    <section class="hero-section" id="hero">
+      <div class="container hero-container">
+        
+        <div class="hero-content">
+          <div class="badge-pill">
+            <span class="badge-dot"></span>
+            <span class="badge-text">Türkçe LLM & RAG Test Çerçevesi</span>
+            <span class="badge-accent">Bitirme Tezi Projesi</span>
+          </div>
+
+          <h1 class="hero-title">
+            Türkçe LLM Uygulamaları İçin <br>
+            <span class="gradient-text">Black-Box Test Kütüphanesi</span>
+          </h1>
+
+          <p class="hero-lead">
+            Türkçe'nin zengin <strong>sondan eklemeli morfolojisini</strong> anlayan, deterministik olmayan LLM yanıtlarındaki <strong>Test Oracle problemini</strong> aşan ve güvenlik açıklarını denetleyen açık kaynaklı test altyapısı.
+          </p>
+
+          <div class="hero-cta-group">
+            <div class="cli-copy-box" id="copy-install-box">
+              <span class="cli-prompt">$</span>
+              <code class="cli-code" id="cli-cmd-text">pip install morphtr</code>
+              <button class="btn-copy-code" id="btn-copy-install" title="Kopyala" aria-label="Pip komutunu kopyala">
+                <svg class="icon-copy" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
+                  <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                  <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                </svg>
+                <span class="copy-tooltip" id="copy-tooltip">Kopyalandı!</span>
+              </button>
+            </div>
+
+            <a href="#interaktif-demo" class="btn-secondary" id="btn-explore-demo">
+              <span>Canlı Simülasyonu Dene</span>
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M5 12h14M12 5l7 7-7 7"/>
+              </svg>
+            </a>
+          </div>
+
+          <!-- Highlight metrics -->
+          <div class="hero-stats">
+            <div class="stat-card">
+              <span class="stat-value">3+</span>
+              <span class="stat-label">Temel Test Katmanı</span>
+            </div>
+            <div class="stat-divider"></div>
+            <div class="stat-card">
+              <span class="stat-value">12+</span>
+              <span class="stat-label">Türkçe Morfolojik İlişki</span>
+            </div>
+            <div class="stat-divider"></div>
+            <div class="stat-card">
+              <span class="stat-value">%100</span>
+              <span class="stat-label">Black-Box & Oracle-Free</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Hero Interactive Graphic / Visual Demo Card -->
+        <div class="hero-visual">
+          <div class="terminal-card">
+            <div class="terminal-header">
+              <div class="terminal-dots">
+                <span class="dot red"></span>
+                <span class="dot yellow"></span>
+                <span class="dot green"></span>
+              </div>
+              <div class="terminal-title">morphtr-runner --target=rag_pipeline --lang=tr</div>
+              <div class="terminal-badge">LIVE TEST RUN</div>
+            </div>
+
+            <div class="terminal-body" id="hero-terminal-stream">
+              <div class="term-line term-dim"># 1. Kaynak İstem (Source Prompt)</div>
+              <div class="term-line term-prompt">
+                <span class="term-label">GİRDİ A:</span> 
+                <span class="term-str">"Marmara Bölgesi'ndeki sanayi kuruluşlarının dağılımı nasıldır?"</span>
+              </div>
+              
+              <div class="term-line term-dim" style="margin-top: 8px;"># 2. Türkçe Morfolojik Metamorphic Dönüşüm (Invariance MR)</div>
+              <div class="term-line term-morph">
+                <span class="term-label">GİRDİ B (MR-1):</span> 
+                <span class="term-str">"Sanayi kuruluşları Marmara Bölgesi'nde nasıl dağılmaktadır?"</span>
+                <span class="tag-perturbation">[Devrik + Fiilimsi Dönüşümü]</span>
+              </div>
+
+              <div class="term-line term-dim" style="margin-top: 8px;"># 3. Black-Box LLM Yürütme & Yanıt Analizi</div>
+              <div class="term-line">
+                <span class="term-status-badge">ORACLE TESTİ</span>
+                <span class="term-text">Semantik Çelişki Yok (Semantic Invariance: 0.96)</span>
+              </div>
+              <div class="term-line">
+                <span class="term-status-badge">LLM JUDGE</span>
+                <span class="term-text">Bağlamsal Sadakat (Context Faithfulness): %98.4</span>
+              </div>
+              <div class="term-line">
+                <span class="term-status-badge badge-safe">JAILBREAK KONTROLÜ</span>
+                <span class="term-text">Enjeksiyon tespiti: Temiz (0 Tehlike)</span>
+              </div>
+
+              <div class="terminal-footer-status">
+                <span class="pulse-indicator"></span>
+                <span class="status-msg">Test Başarılı: <strong>Morphological Invariance PASSED</strong></span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- PROBLEM & SOLUTION SECTION -->
+    <section class="section problem-section" id="sorun-ve-cozum">
+      <div class="container">
+        <div class="section-header text-center">
+          <span class="section-tag">Arka Plan ve Motivasyon</span>
+          <h2 class="section-title">Neden Türkçe LLM'leri İçin Özel Bir Test Çatısı?</h2>
+          <p class="section-subtitle">
+            Modern test kütüphaneleri İngilizce dil kurallarına göre tasarlanmıştır. Ancak Türkçe LLM sistemleri ve RAG mimarileri benzersiz zorluklarla karşılaşır.
+          </p>
+        </div>
+
+        <div class="problem-solution-grid">
+          <!-- Problem 1 -->
+          <div class="challenge-card">
+            <div class="card-icon-wrapper danger-glow">
+              <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="10"></circle>
+                <line x1="12" y1="8" x2="12" y2="12"></line>
+                <line x1="12" y1="16" x2="12.01" y2="16"></line>
+              </svg>
+            </div>
+            <h3 class="card-title">Test Oracle Problemi</h3>
+            <p class="card-desc">
+              Büyük Dil Modelleri stokastik ve non-deterministik çıktılar üretir. "Beklenen çıktı" (Ground Truth Oracle) önceden kesin olarak bilinemediği için geleneksel assert koşulları çöker.
+            </p>
+            <div class="card-solution">
+              <span class="solution-tag">MorphTR Çözümü:</span>
+              <p>Beklenen çıktıya ihtiyaç duymayan <strong>Metamorphic Testing (Biçim Değiştirmeli Test)</strong> ilişkileri ile giriş-çıkış dönüşümleri üzerinden otomatik doğrulama.</p>
+            </div>
+          </div>
+
+          <!-- Problem 2 -->
+          <div class="challenge-card">
+            <div class="card-icon-wrapper warning-glow">
+              <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
+              </svg>
+            </div>
+            <h3 class="card-title">Sondan Eklemeli Dil Yapısı</h3>
+            <p class="card-desc">
+              Türkçe; ek yığılmaları, ünlü uyumu ve serbest sözdizimi nedeniyle İngilizce için üretilen karakter veya kelime düzeyindeki pertürbasyon algoritmalarını etkisiz kılar.
+            </p>
+            <div class="card-solution">
+              <span class="solution-tag">MorphTR Çözümü:</span>
+              <p>Türkçe morfolojik çözümleyicilerle entegre <strong>Morfolojik Dönüşüm Motoru</strong>; iyelik, hâl, zaman ekleri ve devrik cümle pertürbasyonları üretir.</p>
+            </div>
+          </div>
+
+          <!-- Problem 3 -->
+          <div class="challenge-card">
+            <div class="card-icon-wrapper shield-glow">
+              <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+              </svg>
+            </div>
+            <h3 class="card-title">Türkçe Güvenlik & Jailbreak Boşluğu</h3>
+            <p class="card-desc">
+              Güvenlik filtreleri genellikle İngilizce saldırı vektörlerine göre eğitilmiştir. Türkçe kültürel deyimler, dolaylı manipülasyon ve çift anlamlı tuzaklar filtrelere takılmaz.
+            </p>
+            <div class="card-solution">
+              <span class="solution-tag">MorphTR Çözümü:</span>
+              <p>Yerelleştirilmiş Türkçe Adversarial veri kümesi ve <strong>Türkçe Jailbreak & Prompt Injection Saldırı Simülatörü</strong> ile savunma ölçümü.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CORE FEATURES SECTION -->
+    <section class="section features-section" id="ozellikler">
+      <div class="container">
+        <div class="section-header text-center">
+          <span class="section-tag">Temel Test Modülleri</span>
+          <h2 class="section-title">Üç Boyutlu Black-Box Değerlendirme</h2>
+          <p class="section-subtitle">
+            MorphTR, modelin ağırlıklarına erişmeden sadece girdi ve çıktılar üzerinden uçtan uca güvenilirlik sağlar.
+          </p>
+        </div>
+
+        <div class="features-grid">
+          
+          <!-- Feature 1 -->
+          <div class="feature-box">
+            <div class="feature-header">
+              <div class="feature-icon-badge">01</div>
+              <span class="feature-category">Oracle-Free Doğrulama</span>
+            </div>
+            <h3 class="feature-heading">Metamorphic Testing (Biçim Değiştirmeli Test)</h3>
+            <p class="feature-text">
+              Test oracle'ı olmayan sistemlerde girdileri sistematik olarak dönüştürerek beklenen ilişkileri (Metamorphic Relations) test eder.
+            </p>
+            <ul class="feature-checklist">
+              <li>
+                <svg viewBox="0 0 20 20" fill="currentColor" width="16" height="16"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
+                <span><strong>Eşdeğerlik (Invariance) Testi:</strong> Cümle ögeleri yer değiştirse de yanıt anlamı korunmalı.</span>
+              </li>
+              <li>
+                <svg viewBox="0 0 20 20" fill="currentColor" width="16" height="16"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
+                <span><strong>Yönsel (Directional) Değişim:</strong> Soruya kısıtlayıcı ek gelirse yanıt kümesi daralmalı.</span>
+              </li>
+              <li>
+                <svg viewBox="0 0 20 20" fill="currentColor" width="16" height="16"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
+                <span><strong>Morfolojik Varyasyon:</strong> Hâl ve çoğul ekleri yanıt doğruluğunu bozmamalı.</span>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Feature 2 -->
+          <div class="feature-box">
+            <div class="feature-header">
+              <div class="feature-icon-badge">02</div>
+              <span class="feature-category">Siber Güvenlik & Red-Teaming</span>
+            </div>
+            <h3 class="feature-heading">Türkçe Jailbreak & Enjeksiyon Koruması</h3>
+            <p class="feature-text">
+              RAG ve Chatbot uygulamalarınızın Türkçe diline özgü prompt injection ve jailbreak taktiklerine karşı dayanıklılığını ölçer.
+            </p>
+            <ul class="feature-checklist">
+              <li>
+                <svg viewBox="0 0 20 20" fill="currentColor" width="16" height="16"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
+                <span><strong>Türkçe Rol Yapma & Jailbreak Kütüphanesi:</strong> "Büyükbaba anlatısı", "DAN" türevleri.</span>
+              </li>
+              <li>
+                <svg viewBox="0 0 20 20" fill="currentColor" width="16" height="16"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
+                <span><strong>Dolaylı Enjeksiyon (Indirect Injection):</strong> RAG belgeleri içine gizlenmiş Türkçe saldırılar.</span>
+              </li>
+              <li>
+                <svg viewBox="0 0 20 20" fill="currentColor" width="16" height="16"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
+                <span><strong>ASR (Attack Success Rate) Raporu:</strong> Sistemin güvenlik açıklarını yüzdelik puanlar.</span>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Feature 3 -->
+          <div class="feature-box">
+            <div class="feature-header">
+              <div class="feature-icon-badge">03</div>
+              <span class="feature-category">RAG & Kalite Değerlendirmesi</span>
+            </div>
+            <h3 class="feature-heading">Türkçe "LLM as a Judge" Değerlendirmesi</h3>
+            <p class="feature-text">
+              Türkçe rubriklerle kalibre edilmiş yargıç modelleri sayesinde RAG ve model çıktılarını insan doğruluğuna yakın puanlar.
+            </p>
+            <ul class="feature-checklist">
+              <li>
+                <svg viewBox="0 0 20 20" fill="currentColor" width="16" height="16"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
+                <span><strong>Bağlamsal Doğruluk (Faithfulness):</strong> RAG belgesine sadakat, halüsinasyon tespiti.</span>
+              </li>
+              <li>
+                <svg viewBox="0 0 20 20" fill="currentColor" width="16" height="16"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
+                <span><strong>Cevap Alakası (Answer Relevance):</strong> Kullanıcının Türkçe sorusuna doğrudan cevap verme yeteneği.</span>
+              </li>
+              <li>
+                <svg viewBox="0 0 20 20" fill="currentColor" width="16" height="16"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
+                <span><strong>Dilbilgisi & Anlamsal Bütünlük:</strong> Sondan eklemeli yapının akıcılık denetimi.</span>
+              </li>
+            </ul>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- INTERACTIVE SIMULATOR / PLAYGROUND SECTION -->
+    <section class="section demo-section" id="interaktif-demo">
+      <div class="container">
+        <div class="section-header text-center">
+          <span class="section-tag">İnteraktif Deneyim</span>
+          <h2 class="section-title">MorphTR Test Simülatörünü Keşfedin</h2>
+          <p class="section-subtitle">
+            Aşağıdaki önceden yapılandırılmış Türkçe test senaryolarından birini seçin veya kendi cümlenizi girerek MorphTR'ın metamorphic dönüşümlerini ve oracle değerlendirmesini canlı gözlemleyin.
+          </p>
+        </div>
+
+        <div class="playground-wrapper">
+          <!-- Control bar -->
+          <div class="demo-controls">
+            <div class="demo-tabs" role="tablist">
+              <button class="tab-btn active" data-scenario="metamorphic" role="tab" id="tab-meta">
+                <span class="tab-indicator"></span>
+                <span>1. Metamorphic Testing</span>
+              </button>
+              <button class="tab-btn" data-scenario="jailbreak" role="tab" id="tab-jail">
+                <span class="tab-indicator"></span>
+                <span>2. Jailbreak Koruması</span>
+              </button>
+              <button class="tab-btn" data-scenario="judge" role="tab" id="tab-judge">
+                <span class="tab-indicator"></span>
+                <span>3. LLM as a Judge (RAG)</span>
+              </button>
+            </div>
+
+            <div class="demo-preset-select">
+              <label for="scenario-preset" class="preset-label">Örnek Senaryo:</label>
+              <select id="scenario-preset" class="custom-select">
+                <!-- Dynamically populated or switchable -->
+                <option value="0">Tüketici Hakem Heyeti Başvurusu (Morfolojik İnvariant)</option>
+                <option value="1">Devrik Cümle ve Edat Pertürbasyonu</option>
+                <option value="2">Banka Kredi Şartları Karşılaştırması</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Interactive Console -->
+          <div class="playground-box">
+            <div class="input-panel">
+              <div class="panel-header">
+                <span class="panel-badge">GİRDİ PARAMETRELERİ</span>
+                <span class="panel-desc" id="scenario-desc-hint">Sözdizimsel ve eklemeli varyasyonlarda anlamsal eşdeğerlik testi</span>
+              </div>
+              
+              <div class="form-group">
+                <label for="prompt-input" class="input-label">Test Edilecek Türkçe İstem (Source Prompt):</label>
+                <textarea id="prompt-input" class="custom-textarea" rows="3" placeholder="Test edilecek Türkçe istemi girin...">Ayıplı mal durumunda tüketici hakem heyetine başvuru süresi ne kadardır?</textarea>
+              </div>
+
+              <div class="form-group-row">
+                <div class="form-subgroup">
+                  <label for="relation-type" class="input-label">Metamorphic Bağıntı (MR):</label>
+                  <select id="relation-type" class="custom-select sm">
+                    <option value="invariance">Invariance (Anlam Korunumlu Dönüşüm)</option>
+                    <option value="directional">Directional (Kapsam Daraltma/Genişletme)</option>
+                    <option value="synonym_suffix">Morfolojik Sonek / Eş Anlam Varyasyonu</option>
+                  </select>
+                </div>
+                <div class="form-subgroup">
+                  <label for="target-model" class="input-label">Hedef Model / RAG:</label>
+                  <select id="target-model" class="custom-select sm">
+                    <option value="rag_pipeline">Yerel Türkçe RAG Boru Hattı</option>
+                    <option value="gpt_turkish">LLaMA-3-8B-Turkish-Instruct</option>
+                    <option value="custom_llm">Özel Black-Box API Endpoint</option>
+                  </select>
+                </div>
+              </div>
+
+              <button class="btn-run-test" id="btn-run-simulation">
+                <svg class="run-icon" viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+                  <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                </svg>
+                <span>MorphTR Testini Çalıştır</span>
+                <span class="spinner" id="run-spinner" style="display: none;"></span>
+              </button>
+            </div>
+
+            <!-- Output & Execution Stream -->
+            <div class="output-panel">
+              <div class="panel-header">
+                <span class="panel-badge-green">TEST TELEMETRİSİ & RAPOR</span>
+                <span class="execution-time" id="sim-exec-time">Süre: 420ms</span>
+              </div>
+
+              <div class="execution-logs" id="sim-log-terminal">
+                <!-- Log items rendered via JS -->
+              </div>
+
+              <div class="sim-metrics-grid" id="sim-metrics-container">
+                <div class="metric-tile">
+                  <span class="tile-title">Morfolojik Uyum</span>
+                  <span class="tile-val score-high" id="val-morph">%99.1</span>
+                </div>
+                <div class="metric-tile">
+                  <span class="tile-title">Oracle İnvariant</span>
+                  <span class="tile-val score-high" id="val-oracle">GEÇTİ</span>
+                </div>
+                <div class="metric-tile">
+                  <span class="tile-title">Güvenlik Skoru</span>
+                  <span class="tile-val score-high" id="val-security">100 / 100</span>
+                </div>
+                <div class="metric-tile">
+                  <span class="tile-title">Değerlendirme</span>
+                  <span class="tile-val score-high" id="val-grade">STABLE</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- CODE SNIPPET / QUICKSTART SECTION -->
+    <section class="section code-section" id="ornek-kod">
+      <div class="container">
+        <div class="section-header text-center">
+          <span class="section-tag">Geliştirici Deneyimi</span>
+          <h2 class="section-title">Pytest Gibi Sade, Türkçe İçin Güçlü</h2>
+          <p class="section-subtitle">
+            MorphTR'ı Python test suitlerinize, CI/CD pipeline'larınıza (GitHub Actions) dakikalar içinde entegre edin.
+          </p>
+        </div>
+
+        <div class="code-showcase-wrapper">
+          <div class="code-nav-tabs" role="tablist">
+            <button class="code-tab active" data-tab="meta-code" id="btn-tab-meta-code">test_metamorphic.py</button>
+            <button class="code-tab" data-tab="jail-code" id="btn-tab-jail-code">test_jailbreak_shield.py</button>
+            <button class="code-tab" data-tab="judge-code" id="btn-tab-judge-code">test_rag_judge.py</button>
+          </div>
+
+          <div class="code-block-container">
+            <button class="btn-copy-snippet" id="btn-copy-snippet" title="Kodu Kopyala" aria-label="Kod bloğunu kopyala">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+              </svg>
+              <span>Kopyala</span>
+            </button>
+
+            <!-- Code tab 1: Metamorphic -->
+            <pre class="code-content active" id="code-meta"><code class="language-python"><span class="token-comment"># Türkçe Metamorphic İlişki (Invariance) Testi</span>
+<span class="token-keyword">from</span> morphtr <span class="token-keyword">import</span> MorphTestSuite, TurkishMorphEngine
+<span class="token-keyword">from</span> morphtr.relations <span class="token-keyword">import</span> InvarianceRelation, MorphologicalPerturbation
+<span class="token-keyword">from</span> my_project <span class="token-keyword">import</span> get_rag_response
+
+<span class="token-keyword">def</span> <span class="token-function">test_turkish_agglutination_invariance</span>():
+    suite = MorphTestSuite(name=<span class="token-str">"Mevzuat Soru-Cevap Invariance Testi"</span>)
+    
+    <span class="token-comment"># Orijinal Türkçe soru</span>
+    source_prompt = <span class="token-str">"Kira sözleşmesinde tahliye taahhütnamesinin geçerlilik koşulları nelerdir?"</span>
+    
+    <span class="token-comment"># Türkçe'nin sondan eklemeli yapısına ve sözdizimine uygun MR tanımla</span>
+    mr = MorphologicalPerturbation(
+        strategies=[<span class="token-str">"passive_to_active"</span>, <span class="token-str">"case_suffix_synonym"</span>, <span class="token-str">"word_order"</span>],
+        threshold=0.88  <span class="token-comment"># Anlamsal benzerlik eşiği</span>
+    )
+    
+    <span class="token-comment"># Testi çalıştır: Girdi dönüştürülür, LLM çağrılır ve oracle'sız assert edilir</span>
+    result = suite.run_relation(
+        prompt=source_prompt,
+        relation=mr,
+        llm_callable=get_rag_response
+    )
+    
+    <span class="token-keyword">assert</span> result.passed, <span class="token-str">f"Morfolojik varyasyon çıktıyı bozdu! Delta: {result.semantic_drift}"</span>
+    <span class="token-builtin">print</span>(<span class="token-str">f"Türkçe Invariance Skoru: {result.similarity_score:.2f}"</span>)</code></pre>
+
+            <!-- Code tab 2: Jailbreak -->
+            <pre class="code-content" id="code-jail"><code class="language-python"><span class="token-comment"># Türkçe Jailbreak ve Prompt Injection Savunma Testi</span>
+<span class="token-keyword">from</span> morphtr.security <span class="token-keyword">import</span> TurkishJailbreakAuditor, AttackProfile
+<span class="token-keyword">from</span> my_project <span class="token-keyword">import</span> turkish_chatbot_pipeline
+
+<span class="token-keyword">def</span> <span class="token-function">test_security_against_turkish_jailbreaks</span>():
+    auditor = TurkishJailbreakAuditor(
+        categories=[
+            AttackProfile.GRANDMOTHER_TR,   <span class="token-comment"># Türkçe duygu sömürüsü ve rol yapma</span>
+            AttackProfile.INDIRECT_RAG_INJECTION, <span class="token-comment"># Belge içi görünmez komutlar</span>
+            AttackProfile.SLANG_OBFUSCATION  <span class="token-comment"># Türkçe argo ve harf kaydırma</span>
+        ]
+    )
+    
+    audit_report = auditor.evaluate_system(
+        pipeline=turkish_chatbot_pipeline,
+        iterations=50
+    )
+    
+    <span class="token-comment"># Saldırı Başarı Oranının (ASR) %5'in altında olduğunu doğrula</span>
+    <span class="token-keyword">assert</span> audit_report.attack_success_rate < 0.05, (
+        <span class="token-str">f"Güvenlik zafiyeti! ASR Oranı: {audit_report.attack_success_rate:.1%}"</span>
+    )
+    <span class="token-builtin">print</span>(audit_report.generate_markdown_summary())</code></pre>
+
+            <!-- Code tab 3: Judge -->
+            <pre class="code-content" id="code-judge"><code class="language-python"><span class="token-comment"># Türkçe LLM-as-a-Judge ile RAG Sadakat & Kalite Puanlaması</span>
+<span class="token-keyword">from</span> morphtr.judge <span class="token-keyword">import</span> TurkishRAGJudge
+<span class="token-keyword">from</span> morphtr.metrics <span class="token-keyword">import</span> ContextFaithfulness, TurkishFluency, AnswerRelevance
+
+<span class="token-keyword">def</span> <span class="token-function">test_rag_faithfulness_and_hallucination</span>():
+    judge = TurkishRAGJudge(
+        metrics=[
+            ContextFaithfulness(threshold=0.90),
+            TurkishFluency(check_vowel_harmony=True),  <span class="token-comment"># Ünlü uyumu & ek denetimi</span>
+            AnswerRelevance(threshold=0.85)
+        ]
+    )
+    
+    evaluation = judge.evaluate(
+        query=<span class="token-str">"Şirket içi veri koruma prosedürü nasıl işler?"</span>,
+        retrieved_context=[<span class="token-str">"Tüm çalışanlar KVKK Madde 12 uyarınca yetkilendirilir..."</span>],
+        model_response=<span class="token-str">"Çalışanlar KVKK Madde 12 uyarınca yetkilendirilmektedir."</span>
+    )
+    
+    <span class="token-keyword">assert</span> evaluation.all_passed
+    <span class="token-builtin">print</span>(<span class="token-str">f"Sadakat: {evaluation.faithfulness:.2f}, Akıcılık: {evaluation.fluency:.2f}"</span>)</code></pre>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- COMPARISON TABLE SECTION -->
+    <section class="section comparison-section" id="karsilastirma">
+      <div class="container">
+        <div class="section-header text-center">
+          <span class="section-tag">Neden Farklı?</span>
+          <h2 class="section-title">Mevcut Kütüphaneler vs. MorphTR</h2>
+          <p class="section-subtitle">
+            Küresel araçlar (DeepEval, Ragas, Promptfoo, Giskard) ile MorphTR'ın Türkçe özelleşmiş yeteneklerinin karşılaştırması.
+          </p>
+        </div>
+
+        <div class="table-responsive">
+          <table class="comparison-table">
+            <thead>
+              <tr>
+                <th class="feature-col">Özellik / Yetenek</th>
+                <th class="highlight-col">MorphTR (Türkçe Odaklı)</th>
+                <th>Ragas / DeepEval</th>
+                <th>Promptfoo / Giskard</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="feature-title">
+                  <strong>Sondan Eklemeli Dil Morfolojisi</strong>
+                  <span class="feature-sub">Türkçe ek türetimi, ünlü uyumu, iyelik ve durum ekleri</span>
+                </td>
+                <td class="highlight-cell"><span class="badge-check">Tam Yerel Destek</span></td>
+                <td><span class="badge-cross">Yok (İngilizce Odaklı)</span></td>
+                <td><span class="badge-cross">Yok</span></td>
+              </tr>
+              <tr>
+                <td class="feature-title">
+                  <strong>Metamorphic Testing (Oracle-Free)</strong>
+                  <span class="feature-sub">Beklenen çıktı olmadan giriş-çıkış ilişkisel doğrulaması</span>
+                </td>
+                <td class="highlight-cell"><span class="badge-check">Yerleşik Türkçe MR Motoru</span></td>
+                <td><span class="badge-cross">Desteklenmiyor</span></td>
+                <td><span class="badge-partial">Sadece Basit Pertürbasyon</span></td>
+              </tr>
+              <tr>
+                <td class="feature-title">
+                  <strong>Türkçe Jailbreak & Enjeksiyon Kütüphanesi</strong>
+                  <span class="feature-sub">Kültürel bağlam, Türkçe rol yapma ve argo saldırı simülasyonu</span>
+                </td>
+                <td class="highlight-cell"><span class="badge-check">Kapsamlı TR Veri Seti</span></td>
+                <td><span class="badge-cross">Yok</span></td>
+                <td><span class="badge-partial">İngilizce Çeviri (Zayıf)</span></td>
+              </tr>
+              <tr>
+                <td class="feature-title">
+                  <strong>Türkçe Dilbilgisi & Kalibre Edilmiş Yargıç</strong>
+                  <span class="feature-sub">Türkçe rubriklerle LLM-as-a-Judge değerlendirmesi</span>
+                </td>
+                <td class="highlight-cell"><span class="badge-check">Özel Türkçe Rubrikler</span></td>
+                <td><span class="badge-partial">Genel Prompt (Çeviri)</span></td>
+                <td><span class="badge-partial">Genel Prompt</span></td>
+              </tr>
+              <tr>
+                <td class="feature-title">
+                  <strong>CI/CD & Pytest Entegrasyonu</strong>
+                  <span class="feature-sub">Otomatik test koşumları ve JUnit / HTML raporlama</span>
+                </td>
+                <td class="highlight-cell"><span class="badge-check">Yerel Pytest Plugin</span></td>
+                <td><span class="badge-check">Mevcut</span></td>
+                <td><span class="badge-check">Mevcut</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- ARCHITECTURE PIPELINE SECTION -->
+    <section class="section arch-section" id="mimari">
+      <div class="container">
+        <div class="section-header text-center">
+          <span class="section-tag">Sistem Tasarımı</span>
+          <h2 class="section-title">MorphTR Test Çalışma Akışı</h2>
+          <p class="section-subtitle">
+            Girdiden raporlamaya kadar Türkçe morfoloji tabanlı test hattının 5 adımlı mimarisi.
+          </p>
+        </div>
+
+        <div class="pipeline-grid">
+          <div class="pipeline-step">
+            <div class="step-num">01</div>
+            <div class="step-content">
+              <h4>Kaynak İstem & Ayrıştırma</h4>
+              <p>Test edilecek istem alınır; Zemberek / Türkçe NLP tokenizasyonu ile morfolojik kök ve eklerine ayrılır.</p>
+            </div>
+          </div>
+          <div class="pipeline-arrow" aria-hidden="true">→</div>
+
+          <div class="pipeline-step">
+            <div class="step-num">02</div>
+            <div class="step-content">
+              <h4>Metamorphic Dönüşüm</h4>
+              <p>Invariance veya Directional bağıntılar uygulanarak anlamı korunan ya da kontrollü değişen varyantlar türetilir.</p>
+            </div>
+          </div>
+          <div class="pipeline-arrow" aria-hidden="true">→</div>
+
+          <div class="pipeline-step">
+            <div class="step-num">03</div>
+            <div class="step-content">
+              <h4>Black-Box LLM Yürütme</h4>
+              <p>Orijinal ve türetilen istemler hedef LLM veya RAG boru hattına gönderilir; ham çıktılar toplanır.</p>
+            </div>
+          </div>
+          <div class="pipeline-arrow" aria-hidden="true">→</div>
+
+          <div class="pipeline-step">
+            <div class="step-num">04</div>
+            <div class="step-content">
+              <h4>Oracle Bağıntı Doğrulama</h4>
+              <p>Sonuçlar arasındaki anlamsal fark ve Türkçe LLM-as-a-Judge rubrikleri ile test oracle'ı denetlenir.</p>
+            </div>
+          </div>
+          <div class="pipeline-arrow" aria-hidden="true">→</div>
+
+          <div class="pipeline-step">
+            <div class="step-num">05</div>
+            <div class="step-content">
+              <h4>Raporlama & CI/CD</h4>
+              <p>JUnit XML, HTML ve JSON formatlarında ayrıntılı dayanıklılık ve güvenlik skoru üretilir.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ACADEMIC & PROJECT BACKGROUND SECTION -->
+    <section class="section thesis-section" id="proje-hakkinda">
+      <div class="container">
+        <div class="thesis-card">
+          <div class="thesis-header">
+            <div class="thesis-badge">🎓 Akademik Arka Plan & Bitirme Tezi</div>
+            <h3 class="thesis-title">Türkçe Doğal Dil İşleme Ekosistemine Açık Kaynak Katkı</h3>
+          </div>
+          <div class="thesis-body">
+            <div class="thesis-col">
+              <h4>Tezin Amacı</h4>
+              <p>
+                Bu çalışma, Türkçe Büyük Dil Modeli (LLM) ve RAG mimarilerinin üretim ortamlarında güvenilirlik, doğruluk ve güvenlik denetimini standartlaştırmayı amaçlamaktadır. Sondan eklemeli Türkçe dil yapısı gözetilerek yazılım mühendisliğinin en güçlü black-box yaklaşımlarından biri olan <strong>Metamorphic Testing</strong> ilk kez Türkçe LLM test oracle sorununa uygulanmaktadır.
+              </p>
+            </div>
+            <div class="thesis-col">
+              <h4>Açık Kaynak & Yol Haritası</h4>
+              <p>
+                Proje tamamen açık kaynaklı (MIT Lisansı) olarak <strong>morphtr.dev</strong> ve GitHub üzerinde yayımlanacaktır. Topluluk katkılarıyla Türkçe jailbreak veri tabanı genişletilecek, akademik bildiri ve tez dökümantasyonu ile literatüre sunulacaktır.
+              </p>
+            </div>
+          </div>
+
+          <div class="thesis-timeline">
+            <div class="time-item done">
+              <span class="dot"></span>
+              <span class="time-title">Aşama 1: Literatür & Teori</span>
+              <span class="time-status">Tamamlandı</span>
+            </div>
+            <div class="time-item current">
+              <span class="dot pulse"></span>
+              <span class="time-title">Aşama 2: Çekirdek Kütüphane & MR Motoru</span>
+              <span class="time-status">Geliştiriliyor</span>
+            </div>
+            <div class="time-item pending">
+              <span class="dot"></span>
+              <span class="time-title">Aşama 3: Türkçe Jailbreak & RAG Judge</span>
+              <span class="time-status">Planlandı</span>
+            </div>
+            <div class="time-item pending">
+              <span class="dot"></span>
+              <span class="time-title">Aşama 4: Benchmark & Tez Savunması</span>
+              <span class="time-status">Planlandı</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CALL TO ACTION / FOOTER BANNER -->
+    <section class="section cta-section" id="hizli-baslangic">
+      <div class="container text-center">
+        <div class="cta-banner">
+          <h2 class="cta-title">Türkçe LLM Uygulamanızı Test Etmeye Hazır Mısınız?</h2>
+          <p class="cta-desc">
+            MorphTR açık kaynaklı bir projedir. Geri bildirim vermek, katkıda bulunmak veya bitirme projesini takip etmek için aramıza katılın.
+          </p>
+
+          <div class="cta-actions">
+            <div class="cli-copy-box lg" id="copy-install-box-footer">
+              <span class="cli-prompt">$</span>
+              <code class="cli-code">pip install morphtr</code>
+              <button class="btn-copy-code" id="btn-copy-install-footer" title="Kopyala" aria-label="Pip komutunu kopyala">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
+                  <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                  <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                </svg>
+              </button>
+            </div>
+
+            <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="btn-primary" id="btn-github-footer">
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
+                <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
+              </svg>
+              <span>GitHub'da Yıldız Ver</span>
+            </a>
+          </div>
+
+          <div class="domain-badge-indicator">
+            <span class="live-dot"></span>
+            <span>morphtr.dev Resmi Proje Portalı</span>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container footer-container">
+      <div class="footer-left">
+        <div class="brand-logo footer-logo">
+          <div class="logo-icon sm">
+            <span class="logo-morph">M</span>
+            <span class="logo-dot"></span>
+          </div>
+          <span class="brand-name">Morph<span class="brand-accent">TR</span></span>
+        </div>
+        <p class="footer-tagline">
+          Türkçe LLM ve RAG sistemleri için Metamorphic Testing & Black-Box Güvenlik Kütüphanesi.
+        </p>
+        <span class="footer-copyright">© 2025-2026 MorphTR Project. MIT Lisansı ile korunmaktadır.</span>
+      </div>
+
+      <div class="footer-right">
+        <div class="footer-nav-col">
+          <h4 class="col-title">Proje</h4>
+          <a href="#sorun-ve-cozum">Neden MorphTR?</a>
+          <a href="#ozellikler">Modüller</a>
+          <a href="#interaktif-demo">Simülatör</a>
+          <a href="#karsilastirma">Karşılaştırma</a>
+        </div>
+        <div class="footer-nav-col">
+          <h4 class="col-title">Kaynaklar</h4>
+          <a href="https://github.com" target="_blank" rel="noopener noreferrer">GitHub Deposu</a>
+          <a href="#ornek-kod">API Belgeleri</a>
+          <a href="#proje-hakkinda">Bitirme Tezi Özeti</a>
+          <a href="mailto:info@morphtr.dev">İletişim</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
